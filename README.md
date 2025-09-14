@@ -242,7 +242,7 @@ curl "http://localhost:8000/voices"
 ### Model Selection
 By default, the API uses `microsoft/VibeVoice-1.5B`. To use the 7B model, modify line 165 in `main.py`:
 ```python
-model_path = "WestZhang/VibeVoice-Large-pt"
+model_path = "aoi-ot/VibeVoice-7B"
 ```
 
 ### Voice Directory
