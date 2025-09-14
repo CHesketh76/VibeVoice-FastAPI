@@ -32,7 +32,7 @@ A production-ready FastAPI wrapper for Microsoft's VibeVoice model, enabling hig
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone this repository
-git clone https://github.com/dontriskit/VibeVoice-FastAPI
+git clone https://github.com/CHesketh76/VibeVoice-FastAPI.git
 cd VibeVoice-FastAPI
 
 # Create and activate virtual environment with uv
@@ -47,7 +47,7 @@ uv pip install -e .
 #### Option 2: Traditional pip Installation
 ```bash
 # Clone this repository
-git clone https://github.com/dontriskit/VibeVoice-FastAPI
+git clone https://github.com/CHesketh76/VibeVoice-FastAPI.git
 cd VibeVoice-FastAPI
 
 # Create and activate virtual environment
