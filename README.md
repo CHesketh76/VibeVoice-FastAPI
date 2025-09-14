@@ -216,6 +216,53 @@ while True:
         time.sleep(5)
 ```
 
+#### Python Read from File
+```python
+import requests
+import time
+
+# Read script from file
+try:
+    with open("script.txt", "r", encoding="utf-8") as f:
+        script = f.read()
+    print("Script loaded from script.txt")
+except FileNotFoundError:
+    print("Error: script.txt not found. Please create a file named 'script.txt' with your script content.")
+    exit(1)
+except Exception as e:
+    print(f"Error reading script.txt: {e}")
+    exit(1)
+
+# Submit generation request
+response = requests.post("http://localhost:8000/generate", json={
+    "script": script,
+    "speaker_names": ["en-Alice_woman", "en-Carter_man"], 
+    "cfg_scale": 1.3
+})
+
+task_id = response.json()["task_id"]
+print(f"Task submitted: {task_id}")
+
+# Poll for completion
+while True:
+    status_response = requests.get(f"http://localhost:8000/status/{task_id}")
+    status = status_response.json()["status"]
+    
+    if status == "completed":
+        # Download the result
+        audio_response = requests.get(f"http://localhost:8000/result/{task_id}")
+        with open("output.wav", "wb") as f:
+            f.write(audio_response.content)
+        print("Audio saved as output.wav")
+        break
+    elif status == "failed":
+        print("Generation failed")
+        break
+    else:
+        print(f"Status: {status}")
+        time.sleep(5)
+```
+
 ### cURL Examples
 ```bash
 # Submit generation request
